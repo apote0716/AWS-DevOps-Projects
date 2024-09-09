@@ -68,7 +68,7 @@ Initial DB Name: accounts
 Keep the rest default or you may add as your own preference
 ```
 
-- After clicking `Create` button, you will see a popup. Click `View credential details` and note down auto-generated db password. We will use it in our application config files.
+After clicking `Create`, you will see a popup. Click `View credential details` and note down the auto-generated database password. We will use it in our application config files.
 
 ### Step-3: Create ElastiCache
 
@@ -158,7 +158,7 @@ mysql> show databases;
 - Next we will clone our source code here to use script to initialize our database. After these commands we should be able to see 2 tables `role`, `user`, and `user_role`.
 
 ```sh
-git clone https://github.com/Vaj73/vprofileproject-all.git
+git clone https://github.com/apote0716/vprofileproject-all.git
 cd vprofileproject-all
 git checkout aws-Refactor
 cd src/main/resources
