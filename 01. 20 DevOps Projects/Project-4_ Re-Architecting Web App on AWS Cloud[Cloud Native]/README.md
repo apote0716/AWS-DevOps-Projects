@@ -158,7 +158,7 @@ mysql> show databases;
 - Next we will clone our source code here to use script to initialize our database. After these commands we should be able to see 2 tables `role`, `user`, and `user_role`.
 
 ```sh
-git clone https://github.com/rumeysakdogan/vprofileproject-all.git
+git clone https://github.com/apote0716/vprofileproject-all.git
 cd vprofileproject-all
 git checkout aws-Refactor
 cd src/main/resources
