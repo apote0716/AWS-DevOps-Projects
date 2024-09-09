@@ -1,4 +1,4 @@
-# Project-2: Vprofile Project: Automated Setup of Multi Tier App, Locally
+# Project-2: Vprofile Project: Automated Setup of Multi-Tier App, Locally
 
 
 ## Prerequisites
@@ -144,7 +144,7 @@ systemctl daemon-reload
 systemctl start tomcat
 systemctl enable tomcat
 
-git clone -b local-setup https://github.com/Vaj73/vprofile-project.git
+git clone -b local-setup https://github.com/apote0716/vprofile-project.git
 cd vprofile-project
 mvn install
 systemctl stop tomcat
@@ -199,7 +199,7 @@ systemctl restart nginx
 
 - First clone the repository
 ```sh
-git clone https://github.com/Vaj73/vprofile-project.git
+git clone https://github.com/apote0716/vprofile-project.git
 ```
 
 - We need to go to directory that our Vagrantfile exists. Before we run our VBoxes using `vagrant`, we need to install below plugin.
