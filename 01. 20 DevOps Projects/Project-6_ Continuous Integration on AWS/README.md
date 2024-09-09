@@ -48,7 +48,7 @@ ssh git-codecommit.us-east-1.amazonaws.com
 ![](images/codecommit-ssh-connection-successful.png)
 
 Next we clone the repository to a location that we want in our local. I will use the Github repository for `vprofile-project` in my local, and turn this repository to CodeCommit repository. When I am in Github repo directory, I will run below commands.
-[Project code](https://github.com/Vaj73/vprofileproject-all.git)
+[Project code](https://github.com/apote0716/vprofileproject-all.git)
 
 ```sh
 git checkout master
@@ -102,7 +102,7 @@ We need to have an account, from account avatar -> `My Account` -> `Security`. G
 
 Next we create a project, `+` -> `Analyze Project` -> `create project manually`. Below details will be used in our Build.
 ```sh
-Organization: Vaj73-devops-projects
+Organization: apote0716-devops-projects
 Project key: vprofile-repo-rd
 Public
 ```
@@ -116,7 +116,7 @@ We will create paramters for below variables.
 ```sh
 CODEARTIFACT_TOKEN	 SecureString	
 HOST      https://sonarcloud.io
-ORGANIZATION           Vaj73-devops-projects
+ORGANIZATION           apote0716-devops-projects
 PROJECT                vprofile-repo-rd
 SONARTOKEN             SecureString
 ```
