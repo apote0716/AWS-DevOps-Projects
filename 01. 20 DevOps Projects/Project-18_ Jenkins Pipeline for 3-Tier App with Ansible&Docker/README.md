@@ -36,7 +36,7 @@ Go to your GitHub avatar, click `settings` -> `Developer Settings` -> `Personal 
 
 We will SSH into jenkins server, I will use VS Code Remote SSH plugin to connect Jenkins. Once we are connected, we will clone our newly created repo to this server by using TOKEN we have just created.  
 ```sh
-git clone https://<replace_with_your_token>@https://github.com/Vaj73/rd-todo-app.git
+git clone https://<replace_with_your_token>@https://github.com/apote0716/rd-todo-app.git
 ```
 
 Next we will copy `nodejs`, `react` and `postgresql` folders given under `todo-app` directory to our repo. Since I am using remote SSH extension, I will drag/drop the files to my VS Code.You can copy the files under `todo-app` in your local and push it to GitHub as well.
@@ -300,7 +300,7 @@ We will create a playbook `docker_project.yml` to configure 3 app servers with A
   become: true
   vars:
     postgre_container: /home/ec2-user/postgresql
-    container_name: Vaj73_postgre
+    container_name: apote0716_postgre
     image_name: <your_AWS_account_number>.dkr.ecr.us-east-1.amazonaws.com/Vaj73-repo/todo-app:postgr
   tasks:
     - name: remove {{ container_name }} container and {{ image_name }} if exists
@@ -323,8 +323,8 @@ We will create a playbook `docker_project.yml` to configure 3 app servers with A
   become: true
   vars:
     container_path: /home/ec2-user/nodejs
-    container_name: Vaj73_nodejs
-    image_name: <your_AWS_account_number>.dkr.ecr.us-east-1.amazonaws.com/Vaj73-repo/todo-app:nodejs
+    container_name: apote0716_nodejs
+    image_name: <your_AWS_account_number>.dkr.ecr.us-east-1.amazonaws.com/apote0716-repo/todo-app:nodejs
   tasks:
     - name: remove {{ container_name }} container and {{ image_name }} if exists
       shell: "docker ps -q --filter 'name={{ container_name }}' && docker stop {{ container_name }} && docker rm -fv {{ container_name }} && docker image rm -f {{ image_name }} || echo 'Not Found'"
@@ -342,7 +342,7 @@ We will create a playbook `docker_project.yml` to configure 3 app servers with A
   become: true
   vars:
     container_path: /home/ec2-user/react
-    container_name: Vaj73_react
+    container_name: apote0716_react
     image_name: <your_AWS_account_number>.dkr.ecr.us-east-1.amazonaws.com/Vaj73-repo/todo-app:react
   tasks:
     - name: remove {{ container_name }} container and {{ image_name }} image if exists
@@ -364,7 +364,7 @@ We will create `node-env-template` under repository which will be used by Jenkin
 SERVER_PORT=5000
 DB_USER=postgres
 DB_PASSWORD=Pp123456789
-DB_NAME=Vaj73todo
+DB_NAME=apote0716todo
 DB_HOST=${DB_HOST}
 DB_PORT=5432
 ```
