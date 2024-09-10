@@ -89,7 +89,7 @@ Go to `resultserver_deployment.yml` change image name to you have pushed to Dock
  spec:
       containers:
         - name: result-app
-          image: Vaj73/phonebook-resultserver 
+          image: apote0716/phonebook-resultserver 
 ```
 
 Go to `webserver_deployment.yml` change image name to you have pushed to DockerHub
@@ -97,7 +97,7 @@ Go to `webserver_deployment.yml` change image name to you have pushed to DockerH
  spec:
       containers:
         - name: result-app
-          image: Vaj73/phonebook-webserver 
+          image: apote0716/phonebook-webserver 
 ```
 
 ### Step-6: Create secret/configMap
@@ -106,7 +106,7 @@ We will create a secret manifest to store DB_passwords. Before we create Secret 
 
 I will use Clarusway_1 as my `mysql-admin-password` and `R1234r` `mysql-root-password`. So I need to encode it with below command, and use it in secret file.
 ```sh
-echo -n 'CLarusway_1' | base64
+echo -n 'apote0716_1' | base64
 > Q2xhcnVzd2F5XzE=
 echo -n 'R1234r' | base64
 > UjEyMzRy
