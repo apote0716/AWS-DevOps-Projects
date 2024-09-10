@@ -179,7 +179,7 @@ terraform apply
 
 Clone repository to from bewlo repository, we need to do some updates in `application.properties` file.
 ```sh
-git clone -b vp-rem https://github.com/Vaj73/vprofileproject-all.git
+git clone -b vp-rem https://github.com/apote0716/vprofileproject-all.git
 ```
 We will update below parts in that file.
 Replace db01 -> RDS endpoint
