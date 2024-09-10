@@ -42,10 +42,10 @@ Policy: AdministratorAccess (you can specifiy only necessary permissions as well
 ### Step-4: Create Route53 HostedZone
 
 We will create a Public hosted in Route53. Then we will add its `NS` records to our Domain registerer.
-My registered domain name: `aws-devops-journey-of-Vaj73.net`. I will create a hostedzone with below name. 
+My registered domain name: `aws-devops-journey-of-apote0716.net`. I will create a hostedzone with below name. 
 
 ```sh
-Name: kubeapp.aws-devops-journey-of-Vaj73.net
+Name: kubeapp.aws-devops-journey-of-apote0716.net
 ```
 
 Then we will create 4 NS values to our Registered domain as `NS Record`.
@@ -80,7 +80,7 @@ Next we  need to verify domain we have created in Route53.
 
 Now we will run kops command which will create kops cluster.(_Note: Don't forget to replace your domain name and s3 bucket name in the command._) Below command won't create cluster, it will create configuration of cluster.
 ```sh
-kops create cluster --name=kubeapp.aws-devops-journey-of-Vaj73.net \
+kops create cluster --name=kubeapp.aws-devops-journey-of-apote0716.net \
 --state=s3://kubeapp-kops-state --zones=us-east-1a,us-east-1b \
 --node-count=1 --node-size=t3.small --master-size=t3.medium \
 --dns-zone=kubeapp.aws-devops-journey-of-Vaj73.net \
@@ -92,7 +92,7 @@ kops create cluster --name=kubeapp.aws-devops-journey-of-Vaj73.net \
 We can create cluster with below command, we need to specify the s3 bucket we use for state config.
 
 ```sh
-kops update cluster --name kubeapp.aws-devops-journey-of-Vaj73.net --state=s3://kubeapp-kops-state --yes --admin
+kops update cluster --name kubeapp.aws-devops-journey-of-apote0716.net --state=s3://kubeapp-kops-state --yes --admin
 ```
 
 After issuing thsi command, wait 10-15 minutes before validating the cluster with below command:
@@ -109,7 +109,7 @@ aws ec2 create-volume \
     --availability-zone us-east-1a \
     --volume-type gp2 \
     --size 3 \
-    --tag-specifications 'ResourceType=volume,Tags=[{Key=KubernetesCluster,Value=kubeapp.aws-devops-journey-of-Vaj73.net}]'
+    --tag-specifications 'ResourceType=volume,Tags=[{Key=KubernetesCluster,Value=kubeapp.aws-devops-journey-of-apote0716.net}]'
 ```
 
 ![](img/volume-created.png)
@@ -123,7 +123,7 @@ For this reason we will create labels for our nodes.
 
 You can find all kubernetes manifest files by cloning this repository.Clone this repo to your ec2. Make necessary changes in files, before applying `kubectl` commands.
 ```sh
-https://github.com/Vaj73/kube-app.git
+https://github.com/apote0716/kube-app.git
 ```
 
 In Project-12, we have Containerized the vprofile application and push it to the DockerHub. We will use the images below with :V1 tag from DockerHub repository in our K8s manifests.
@@ -230,7 +230,7 @@ Lastly, we can verify our memcached service.
 
 We will start with deleting our kubernetes services first. Then we will delete our cluster, s3 bucket, Route53 Hosted zone.
 ```sh
-kops delete cluster --name=kubeapp.aws-devops-journey-of-Vaj73.net \
+kops delete cluster --name=kubeapp.aws-devops-journey-of-apote0716.net \
 --state=s3://kubeapp-kops-state --yes
 ```
 
