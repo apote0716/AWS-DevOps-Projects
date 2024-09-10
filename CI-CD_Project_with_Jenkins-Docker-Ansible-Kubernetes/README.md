@@ -56,7 +56,7 @@ echo "Hello World!"
 - Now we can run our Second job to check `Github integration` is working as expected. Create another FreeStyleJob as below:
 ```sh
 SCM: Git
-URL: https://github.com/Vaj73/hello-world.git
+URL: https://github.com/apote0716/hello-world.git
 Save -> Build Now
 ```
 
@@ -202,7 +202,7 @@ pwd: deployer
 - Now we can create our next job with name of `BuildAndDeployJob`. After build step, the artifact will stored under `webapp/target/` directory as `webapp.war`.  
 ```sh
 Kind: Maven Project
-SCM: https://github.com/Vaj73/hello-world.git
+SCM: https://github.com/apote0716/hello-world.git
 Goal and options: clean install
 Post Build Actions: Deploy war/ear to a container
 WAR/EAR files: **/*.war
@@ -346,7 +346,7 @@ provide password
 ```sh
 Name: BuildAndDeployOnContainer
 Type: Maven Project
-SCM: https://github.com/Vaj73/hello-world.git
+SCM: https://github.com/apote0716/hello-world.git
 POLL SCM: * * * * *
 Build Goals: clean install
 Post build actions: Send build artifacts over ssh
@@ -596,8 +596,8 @@ Login Succeeded
 - If we want to push an image to our dockerhub it has to be tagged with our docker username. We can tag an existing image by using `docker tag` command like shown below.
 
 ```sh
-docker tag <image-id> Vaj73/regapp:tagname
-docker push Vaj73/regapp:tagname
+docker tag <image-id> apote0716/regapp:tagname
+docker push apote0716/regapp:tagname
 ```
 
 - Now we can update our playbook to add new tasks.
@@ -611,10 +611,10 @@ docker push Vaj73/regapp:tagname
       args:
         chdir: /opt/docker
     - name: create tag to push image onto dockerhub
-      command: docker tag regapp:latest Vaj73/regapp:latest
+      command: docker tag regapp:latest apote0716/regapp:latest
 
     - name: push docker image
-      command: docker push Vaj73/regapp:latest
+      command: docker push apote0716/regapp:latest
 ```
 
 - We can dry-run our playbook by giving `--check` flag.
@@ -642,7 +642,7 @@ exec command: ansible-playbook /opt/docker/regapp.yml
 
   tasks:
     - name: create container
-      command: docker run -d --name regapp-server -p 8082:8080 Vaj73/regapp:latest 
+      command: docker run -d --name regapp-server -p 8082:8080 apote0716/regapp:latest 
 ```
 
 - But we have a problem in this playbook, when we try to run the same playbook again, it will give an error saying `regapp-server container already exists.` To fix this problem, we will add below tasks to our playbook.
@@ -667,11 +667,11 @@ exec command: ansible-playbook /opt/docker/regapp.yml
       ignore_errors: yes
 
     - name: remove the existing image
-      command: docker rmi Vaj73/regapp:latest
+      command: docker rmi apote0716/regapp:latest
       ignore_errors: yes
 
     - name: create container
-      command: docker run -d --name regapp-server -p 8082:8080 Vaj73/regapp:latest 
+      command: docker run -d --name regapp-server -p 8082:8080 apote0716/regapp:latest 
       ignore_errors: yes
 ```
 
@@ -740,7 +740,7 @@ spec:
     spec:
       containers:
       - name: regapp
-        image: Vaj73/regapp
+        image: apote0716/regapp
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -763,7 +763,7 @@ kubectl get deploy
 apiVersion: v1
 kind: Service
 metadata:
-  name: Vaj73-service
+  name: apote0716-service
 spec:
   selector:
     app: regapp 
@@ -891,8 +891,8 @@ ansible-playbook -i /opt/docker/hosts /opt/docker/kube_service.yml
 ```
 - Before running the job, lets delete existing deployments in our K8s server. Then we can run our job.
 ```sh
-kubectl delete deploy Vaj73-regapp
-kubectl delete service Vaj73-service
+kubectl delete deploy apote0716-regapp
+kubectl delete service apote0716-service
 ```
 
 - We can combine playbooks in one by adding `kube_service.yml` as a new task under `kube_deploy.yml`.
@@ -927,7 +927,7 @@ Initialize only when build is stable
 - We need to update one more thing in our `kube-deploy.yml` playbook. We need to specify the rollout whenever if new image is pushed to docker hub.
 ```yaml
   - name: update deployment with new pods if image updated in docker hub
-    command: kubectl rollout restart deployment.apps/Vaj73-regapp
+    command: kubectl rollout restart deployment.apps/apote0716-regapp
 ```
 - We can make an update to `index.jsp` in our `hello-world project` under `hello-world/webapp/src/main/webapp/` directory and push our changes to Github. This will trigger both CI&CD jobs triggered successively. 
 
